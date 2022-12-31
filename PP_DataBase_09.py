@@ -1,0 +1,15 @@
+import sqlite3 as l
+con=l.connect('Arun.db')
+cur=con.cursor()
+cur.execute('DROP TABLE IF EXISTS STUDENT')
+cur.execute('''CREATE TABLE STUDENT(ID INT,NAME TEXT,PERCENTAGE INT)''')
+cur.execute("INSERT INTO STUDENT VALUES(1011,'ARUN',80)")
+cur.execute("INSERT INTO STUDENT VALUES(1012,'NAVEEN',75)")
+cur.execute("INSERT INTO STUDENT VALUES(1013,'GANGULLY',90)")
+con.commit()
+print('Values are inserted in STUDENT Table')
+cur.execute('SELECT *FROM STUDENT')
+print('\nThe values of the student are :\n')
+rows=cur.fetchall()
+for i in rows:
+    print('{:<4}|{:<20}|{:>3}'.format(i[0],i[1],i[2]))
